@@ -30,12 +30,6 @@ Run the project by executing the `dashboard.py` file located in the `report` dir
 python report/dashboard.py
 ```
 
-Once the application is running, access the dashboard by navigating to:
-
-```bash
-http://127.0.0.1:8000
-```
-
 ---
 
 ## 4. Accessing the Dashboard
