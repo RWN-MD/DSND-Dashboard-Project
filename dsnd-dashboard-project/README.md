@@ -1,4 +1,3 @@
-readme_content = """
 # Data Science Dashboard Project
 
 This project is a data science dashboard built using Python, FastAPI, and SQLite. It allows users to view and analyze data for employees and teams, featuring dynamic visualizations and tables.
@@ -17,7 +16,9 @@ The dashboard is designed to meet the following criteria:
 
 To set up the project environment, install the required Python dependencies using the following command:
 
-```bash pip install -r requirements.txt```
+```bash 
+pip install -r requirements.txt
+```
 
 ---
 
@@ -25,11 +26,15 @@ To set up the project environment, install the required Python dependencies usin
 
 Run the project by executing the `dashboard.py` file located in the `report` directory:
 
-```bash python report/dashboard.py```
+```bash
+python report/dashboard.py
+```
 
 Once the application is running, access the dashboard by navigating to:
 
-```bash http://127.0.0.1:8000```
+```bash
+http://127.0.0.1:8000
+```
 
 ---
 
@@ -37,7 +42,9 @@ Once the application is running, access the dashboard by navigating to:
 
 After starting the project, open your browser and navigate to:
 
-```bash http://127.0.0.1:8000```
+```bash
+http://127.0.0.1:8000
+```
 
 ### Features on the Dashboard:
 
@@ -57,7 +64,9 @@ After starting the project, open your browser and navigate to:
 
 To ensure functionality, run the project's test suite using the following command:
 
-```bash pytest```
+```bash
+pytest
+```
 
 ### Tests Overview:
 
