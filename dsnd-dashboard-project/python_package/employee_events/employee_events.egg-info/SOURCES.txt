@@ -1,0 +1,7 @@
+README.md
+setup.py
+employee_events.egg-info/PKG-INFO
+employee_events.egg-info/SOURCES.txt
+employee_events.egg-info/dependency_links.txt
+employee_events.egg-info/requires.txt
+employee_events.egg-info/top_level.txt

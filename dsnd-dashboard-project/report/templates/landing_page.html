@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard Filters</title>
+    
+    <script>
+        const debugOverlay = document.getElementById('debug-overlay');
+        const debugLog = document.getElementById('debug-log');
+    
+        function logDebugMessage(message) {
+            const debugOverlay = document.getElementById('debug-overlay');
+            const debugLog = document.getElementById('debug-log');
+        
+            if (!debugLog || !debugOverlay) {
+                console.error("Debug overlay or log element is missing.");
+                return;
+            }
+        
+            debugLog.innerText += `${message}\n`;
+            debugOverlay.style.display = 'block';
+        }
+        
+    
+        async function setupEventListeners() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                const formData = new FormData(form);
+                logDebugMessage(`Form Submitted: ${JSON.stringify(Object.fromEntries(formData.entries()))}`);
+            });
+    
+            const radios = document.querySelectorAll('input[name="profile_type"]');
+            radios.forEach(radio => {
+                radio.addEventListener("change", async (event) => {
+                    const profileType = event.target.value;
+                    logDebugMessage(`Radio Changed: ${profileType}`);
+                    console.log(`Profile Type Changed: ${profileType}`);
+    
+                    // Update header dynamically
+                    const header = document.getElementById("dynamic-header");
+                    header.innerText =
+                        profileType === "Employee"
+                            ? "Employee Performance Dashboard"
+                            : "Team Performance Dashboard";
+    
+                    // Fetch updated dropdown
+                    try {
+                        const response = await fetch(`/update_dropdown?profile_type=${profileType}`);
+                        if (response.ok) {
+                            const dropdownHTML = await response.text();
+                            console.log("Dropdown fetched successfully:", dropdownHTML);
+                            const entitySelector = document.getElementById("entity-selector");
+                            entitySelector.innerHTML = dropdownHTML;
+                            logDebugMessage(`Dropdown Updated: ${dropdownHTML}`);
+                        } else {
+                            logDebugMessage(`Failed to fetch dropdown: ${response.statusText}`);
+                        }
+                    } catch (error) {
+                        logDebugMessage(`Error Fetching Dropdown: ${error.message}`);
+                    }
+                });
+            });
+        }
+    
+        window.onload = setupEventListeners;
+    </script>
+    
+</head>
+<body>
+    <!-- Dynamic Header -->
+    <h1 id="dynamic-header">Employee Performance Dashboard</h1>
+
+    <!-- Render the DashboardFilters Form -->
+    <form action="/update_data" method="POST">
+        <!-- Render the profile type selector -->
+        <div>
+            {{ dashboard_filters.render_radio() }}
+        </div>
+    
+        <!-- Entity Dropdown Selector -->
+        <div id="entity-selector">
+            {{ dashboard_filters.render_dropdown(None, default_model) | safe }}
+        </div>
+    
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<div id="debug-overlay" style="position: fixed; bottom: 0; left: 0; width: 100%; max-height: 150px; overflow-y: auto; background-color: rgba(0, 0, 0, 0.8); color: white; font-size: 12px; padding: 5px; z-index: 9999; display: none;">
+    <pre id="debug-log"></pre>
+</div>
+
+</html>

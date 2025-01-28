@@ -1,0 +1,30 @@
+[project]
+name = "employee_events"
+version = "1.0.0"
+description = "SQL Query API for Employee Events Database"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "RWN", email = "russellwnordquist@gmail.com" }
+]
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "pandas",
+]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["python-package"]
+exclude = ["tests*"]
