@@ -101,8 +101,10 @@ pytest
 
 ---
 
-## 7. Directory Structure
+## 7. Contact
 
-The project is organized as follows:
+For questions, feedback, or suggestions, please open an issue on the [GitHub repository](https://github.com/RWN-MD/DSND-Dashboard-Project.git).
+"""
+
 
 
